@@ -20,6 +20,7 @@
 @property (nonatomic,strong) NSArray *sortByOptions;
 @property (nonatomic,strong) NSArray *distanceOptions;
 @property (nonatomic,strong) NSArray *categoriesOptions;
+@property (nonatomic, assign) BOOL shouldAppendCategory;
 @end
 
 @implementation FiltersViewController
@@ -101,7 +102,7 @@
     }
     
     
-    
+    self.shouldAppendCategory= NO;
     
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
@@ -142,21 +143,21 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
-    headerView.backgroundColor= [UIColor grayColor];
+    headerView.backgroundColor= [UIColor redColor];
     UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(30, 10, 320, 20)];
     switch(section) {
         case 0:
             label.text=@"Deals";
             break;
         case 1:
-            label.text=@"Sort by";
+            label.text=@"Sort By";
             break;
         case 2:
             label.text=@"Radius";
             break;
         case 3:
             label.text=@"Categories";  //#bug todo set all the time
-            if(![self.optionsChosen[@"Categories"] isEqualToString:@""]) {
+            if(self.shouldAppendCategory) {
                 label.text=[label.text stringByAppendingFormat:@": %@", self.optionsChosen[@"Categories"]];
             }
             break;
@@ -177,7 +178,7 @@
     cell.toggleSwitch.hidden = YES;
     cell.toggleSwitch.enabled = NO;
     
-    NSLog(@" IndexPath  %ld - %ld", indexPath.section, indexPath.row);
+   // NSLog(@" IndexPath  %ld - %ld", indexPath.section, indexPath.row);
     NSString *nameText = @"";
     if(expanded[indexPath.section])
     {
@@ -251,6 +252,7 @@
                 {
                     self.optionsChosen[@"Categories"]=[NSString stringWithFormat:@"%@",self.categoriesOptions[indexPath.row]];
                     [self.delegate categoriesInSearch:self.optionsChosen[@"Categories"]];
+                    self.shouldAppendCategory = YES;
                 }
                 break;
             default:
@@ -275,10 +277,11 @@
                 self.optionsChosen[@"Categories"]=[NSString stringWithFormat:@"%@",self.categoriesOptions[indexPath.row]];
                 [self.delegate categoriesInSearch:self.optionsChosen[@"Categories"]];
                 [self.tableView deleteRowsAtIndexPaths:self.extraCategoriesIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+                self.shouldAppendCategory = YES;
                 break;
         }
     }
-    //reload that section
+    //reload that table section
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationNone];
 
 }

@@ -17,10 +17,8 @@
         ResultViewController *myVc =   [[ResultViewController alloc] init];
 
     UINavigationController *uvc = [[UINavigationController alloc] initWithRootViewController:myVc];
-    uvc.navigationBar.barTintColor = [UIColor colorWithRed:255/255.0f green:0/255.0f blue:0/255.0f alpha:1.0f];
+    uvc.navigationBar.barTintColor = [UIColor colorWithRed:255/255.0f green:0 blue:0 alpha:1.0f];
     self.window.rootViewController = uvc;
-    
-//    self.window.rootViewController = [[ResultViewController alloc] init];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

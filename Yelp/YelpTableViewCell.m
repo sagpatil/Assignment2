@@ -9,7 +9,6 @@
 #import "YelpTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
 
-static int NameLabelWidth=100.;
 
 @implementation YelpTableViewCell
 
@@ -39,7 +38,7 @@ static int NameLabelWidth=100.;
         nameLabelWidth=175;
     }
     
-    NSString *name = business.name;
+  //  NSString *name = business.name;
 //    UIFont *font = [UIFont boldSystemFontOfSize: 17];
 //    NSDictionary *attributes = @{NSFontAttributeName: font};
 //    CGRect rect = [name boundingRectWithSize:CGSizeMake(NameLabelWidth, MAXFLOAT)
@@ -65,7 +64,7 @@ static int NameLabelWidth=100.;
 //    self.priceLabel.text = [@"" stringByPaddingToLength:business.price withString:@"$" startingAtIndex:0];
     self.reviewsLabel.text = [NSString stringWithFormat:@"%li Reviews", (long)business.reviewCount];
     self.addressLabel.text = business.address;
-      NSLog(@" \n\n %@ Label height set to %f\n",business.address, self.addressLabel.frame.size.height);
+ //    NSLog(@" \n\n %@ Label height set to %f\n",business.address, self.addressLabel.frame.size.height);
     self.categoryLabel.text = [business getCategoriesString];
     [self.businessImageView setImageWithURL:[NSURL URLWithString:business.imageURL]];
     [self.ratingImageView setImageWithURL:[NSURL URLWithString:business.ratingImageURL]];

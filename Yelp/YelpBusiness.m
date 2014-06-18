@@ -40,8 +40,6 @@
     }
     
     self.categories = [businessData objectForKey:@"categories"];
-    
-    
     self.imageURL = [businessData objectForKey:@"image_url"];
     
     

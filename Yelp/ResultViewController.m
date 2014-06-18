@@ -149,7 +149,7 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
     {
         nameLabelWidth = 450;
-                addheight = 20;
+        addheight = 30;
     }
     
     else if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
@@ -165,21 +165,22 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
                                   attributes:attributes
                                      context:nil];
     nameHeight = rect.size.height;
-    
+   // NSLog(@" \n\n                                      NAme %@ height %f ",name, nameHeight);
     
     NSString *add = biz.address;
     CGRect rect1 = [add boundingRectWithSize:CGSizeMake(nameLabelWidth, MAXFLOAT)
                                      options:NSStringDrawingUsesLineFragmentOrigin
                                   attributes:attributes
                                      context:nil];
+  
     addheight += rect1.size.height;
     
     
-    NSLog(@"\n\n----%@ -height: %f\n",add,addheight);
-    //NSLog(biz.name);
+    float cellheight = 48 + addheight + nameHeight;
+   // NSLog(@"\n\n----                    %f            %@ -height: %f\n",cellheight ,add,addheight);
     
-    float cellheight = 46 + addheight + nameHeight;
     
+   // NSLog(@"\n\n %f",cellheight);
     return cellheight;
 
 }
