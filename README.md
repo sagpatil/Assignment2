@@ -29,7 +29,7 @@ Features
 
 Walkthrough
 ------------
-![Video Walkthrough](flicks-walkthrough.gif)
+![Video Walkthrough](anime.gif)
 
 Credits
 ---------
