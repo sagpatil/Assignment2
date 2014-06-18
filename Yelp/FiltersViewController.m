@@ -199,7 +199,7 @@
     else {
         switch(indexPath.section) {
             case 0:
-                nameText = self.optionsChosen[@"Deals"];
+                nameText = @"Offering a Deal";
                 cell.toggleSwitch.hidden = NO;
                 cell.toggleSwitch.enabled = YES;
                 break;

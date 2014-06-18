@@ -16,7 +16,7 @@ NSString * const kYelpConsumerKey = @"vxKwwcR_NMQ7WaEiQBK_CA";
 NSString * const kYelpConsumerSecret = @"33QCvh5bIF5jIHR5klQr7RtBDhQ";
 NSString * const kYelpToken = @"uRcRswHFYa1VkDrGV6LAW2F8clGh5JHV";
 NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
-static int NameLabelWidth=175;
+
 
 @interface ResultViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -143,18 +143,44 @@ static int NameLabelWidth=175;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     YelpBusiness *biz = self.businesses[indexPath.row];
+    int nameLabelWidth=175;
+    float addheight;
+    float nameHeight;
+    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
+    {
+        nameLabelWidth = 450;
+                addheight = 20;
+    }
+    
+    else if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+    {
+        nameLabelWidth=175;
+    }
+    
     NSString *name = biz.name;
     UIFont *font = [UIFont boldSystemFontOfSize: 17];
     NSDictionary *attributes = @{NSFontAttributeName: font};
-    CGRect rect = [name boundingRectWithSize:CGSizeMake(NameLabelWidth, MAXFLOAT)
+    CGRect rect = [name boundingRectWithSize:CGSizeMake(nameLabelWidth, MAXFLOAT)
                                      options:NSStringDrawingUsesLineFragmentOrigin
                                   attributes:attributes
                                      context:nil];
-    CGSize size=rect.size;
-    //NSLog(@"----%@ height: %f",name,size.height);
+    nameHeight = rect.size.height;
+    
+    
+    NSString *add = biz.address;
+    CGRect rect1 = [add boundingRectWithSize:CGSizeMake(nameLabelWidth, MAXFLOAT)
+                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:attributes
+                                     context:nil];
+    addheight += rect1.size.height;
+    
+    
+    NSLog(@"\n\n----%@ -height: %f\n",add,addheight);
     //NSLog(biz.name);
     
-    return 86 + size.height;
+    float cellheight = 46 + addheight + nameHeight;
+    
+    return cellheight;
 
 }
 
@@ -163,7 +189,7 @@ static int NameLabelWidth=175;
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    self.filtersView.optionsChosen[@"Deals"]=@"";
+    //self.filtersView.optionsChosen[@"Deals"]=@"";
     self.filtersView.optionsChosen[@"SortBy"]=@"";
     self.filtersView.optionsChosen[@"Distance"]=@"";
     self.filtersView.optionsChosen[@"Categories"] = @"";

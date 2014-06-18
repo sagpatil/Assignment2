@@ -27,28 +27,34 @@ static int NameLabelWidth=100.;
 
 - (void) initializeCell:(YelpBusiness *)business withIndex:(NSInteger)index{
     self.business=business;
+    int nameLabelWidth;
     
-
-    [self.businessNameLabel setLineBreakMode:NSLineBreakByWordWrapping];
-    [self.businessNameLabel setNumberOfLines:0];
+    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
+    {
+        nameLabelWidth = 450;
+    }
     
+    else if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+    {
+        nameLabelWidth=175;
+    }
     
     NSString *name = business.name;
-    UIFont *font = [UIFont boldSystemFontOfSize: 17];
-    NSDictionary *attributes = @{NSFontAttributeName: font};
-    CGRect rect = [name boundingRectWithSize:CGSizeMake(NameLabelWidth, MAXFLOAT)
-                                     options:NSStringDrawingUsesLineFragmentOrigin
-                                  attributes:attributes
-                                     context:nil];
-
-    CGRect frame = self.businessNameLabel.frame;
-    [self.businessNameLabel setFrame:CGRectMake(frame.origin.x, frame.origin.y, rect.size.width, rect.size.height)];
-    [self.businessNameLabel setNumberOfLines:0];
-    [self.businessNameLabel setLineBreakMode:NSLineBreakByWordWrapping];
+//    UIFont *font = [UIFont boldSystemFontOfSize: 17];
+//    NSDictionary *attributes = @{NSFontAttributeName: font};
+//    CGRect rect = [name boundingRectWithSize:CGSizeMake(NameLabelWidth, MAXFLOAT)
+//                                     options:NSStringDrawingUsesLineFragmentOrigin
+//                                  attributes:attributes
+//                                     context:nil];
+//
+//    CGRect frame = self.businessNameLabel.frame;
+//    [self.businessNameLabel setFrame:CGRectMake(frame.origin.x, frame.origin.y, NameLabelWidth, rect.size.height)];
+//    [self.businessNameLabel setNumberOfLines:0];
+//    [self.businessNameLabel setLineBreakMode:NSLineBreakByWordWrapping];
    // [self.businessNameLabel setBackgroundColor:[UIColor redColor]];
 //    frame.size.height = size.height;
 //    self.businessNameLabel.frame=frame;
-    NSLog(@" Label height set to %f",self.businessNameLabel.frame.size.height);
+  
     self.businessNameLabel.text = business.name;
 //    [self.businessNameLabel sizeToFit];
     
@@ -57,9 +63,9 @@ static int NameLabelWidth=100.;
     
     //self.distanceLabel.text = [NSString stringWithFormat: @"%.2fmi", business.distance];
 //    self.priceLabel.text = [@"" stringByPaddingToLength:business.price withString:@"$" startingAtIndex:0];
-    self.reviewsLabel.text = [NSString stringWithFormat:@"%i Reviews", business.reviewCount];
+    self.reviewsLabel.text = [NSString stringWithFormat:@"%li Reviews", (long)business.reviewCount];
     self.addressLabel.text = business.address;
-    
+      NSLog(@" \n\n %@ Label height set to %f\n",business.address, self.addressLabel.frame.size.height);
     self.categoryLabel.text = [business getCategoriesString];
     [self.businessImageView setImageWithURL:[NSURL URLWithString:business.imageURL]];
     [self.ratingImageView setImageWithURL:[NSURL URLWithString:business.ratingImageURL]];

@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>DDFA3CA7-D7B0-4742-B203-1E695B8D4C77</string>
+	<string>C31D1338-B8F1-42D5-AB0E-6F50F8E3F8EB</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Yelp</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>BEBA9C32-4F5A-4FEC-8DB2-A217CA33187D</key>
-		<string>https://github.com/sagpatil/Yelpers.git</string>
+		<key>8E3EAC9C-884D-49AF-9775-7D69AB2A489F</key>
+		<string>https://github.com/sagpatil/Assignment2.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Yelp.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>BEBA9C32-4F5A-4FEC-8DB2-A217CA33187D</key>
+		<key>8E3EAC9C-884D-49AF-9775-7D69AB2A489F</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/sagpatil/Yelpers.git</string>
+	<string>https://github.com/sagpatil/Assignment2.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>BEBA9C32-4F5A-4FEC-8DB2-A217CA33187D</string>
+	<string>8E3EAC9C-884D-49AF-9775-7D69AB2A489F</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>BEBA9C32-4F5A-4FEC-8DB2-A217CA33187D</string>
+			<string>8E3EAC9C-884D-49AF-9775-7D69AB2A489F</string>
 			<key>IDESourceControlWCCName</key>
-			<string>YelpClient</string>
+			<string>Assignment2</string>
 		</dict>
 	</array>
 </dict>
