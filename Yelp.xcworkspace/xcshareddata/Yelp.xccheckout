@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>DDFA3CA7-D7B0-4742-B203-1E695B8D4C77</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Yelp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BEBA9C32-4F5A-4FEC-8DB2-A217CA33187D</key>
+		<string>https://github.com/sagpatil/Yelpers.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Yelp.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BEBA9C32-4F5A-4FEC-8DB2-A217CA33187D</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/sagpatil/Yelpers.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BEBA9C32-4F5A-4FEC-8DB2-A217CA33187D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BEBA9C32-4F5A-4FEC-8DB2-A217CA33187D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>YelpClient</string>
+		</dict>
+	</array>
+</dict>
+</plist>
