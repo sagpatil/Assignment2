@@ -22,9 +22,9 @@ Features
 
 
 #### Optional
-- [x] infinite scroll for restaurant results
-- [x] Implement map view of restaurant results
-- [x]  Implement the restaurant detail page.
+- [ ] infinite scroll for restaurant results
+- [ ] Implement map view of restaurant results
+- [ ]  Implement the restaurant detail page.
  
 
 Walkthrough
