@@ -119,6 +119,19 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+
+
+    if (self.businesses.count - 1 == indexPath.row){
+        NSLog(@"Searching with more radius for inifinite scrolling");
+        self.filtersView.optionsChosen[@"SortBy"]=@"";
+        self.filtersView.optionsChosen[@"Distance"]=@"4000 meters";
+        self.filtersView.optionsChosen[@"Categories"] = @"";
+        [self searchUsingFilters];
+    }
+}
+
+
 
 #pragma mark - TableView meethods
 
@@ -130,8 +143,6 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     if (self.businesses.count > 0)
     {
         [cell initializeCell:self.businesses[indexPath.row] withIndex:indexPath.row+1];
-//        [cell setNeedsUpdateConstraints];
-//        [cell updateConstraintsIfNeeded];
     }
     return cell;
 }
@@ -276,12 +287,12 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     }
     self.searchBar.text = self.searchKey;
      NSLog(@"Search worrd:%@", self.searchKey);
-    [MBProgressHUD  showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hub = [MBProgressHUD  showHUDAddedTo:self.view animated:YES];
+    hub.labelText = @"Loading....";
     
-     [self.client searchWithTerm:self.searchKey withDeals:dealsChosen sortBy:self.sortByYelpKeys[self.optionsChosen[@"SortBy"]]
+    [self.client searchWithTerm:self.searchKey withDeals:dealsChosen sortBy:self.sortByYelpKeys[self.optionsChosen[@"SortBy"]]
                        inRadius:[self.optionsChosen[@"Distance"] intValue] inCategory:self.categoriesYelpKeys[ self.optionsChosen[@"Categories"]] success:^(AFHTTPRequestOperation *operation, id response) {
                                NSLog(@"API with filters called Successfuly");
-                           [self.businesses removeAllObjects];
                            
                            for (NSDictionary *businessDictionaryObj in [response objectForKey:@"businesses"] ) {
                                [self.businesses addObject:[[YelpBusiness alloc]initWithBusinessData:businessDictionaryObj]];
@@ -292,12 +303,13 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
                            
                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                            NSLog(@"error: %@", [error description]);
-                           [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        //   [MBProgressHUD hideHUDForView:self.view animated:YES];
                        }];
 
 }
 
 - (void) searchButtonClicked {
+    [self.businesses removeAllObjects];
     [self searchUsingFilters];
 }
 @end
