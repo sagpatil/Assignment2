@@ -18,6 +18,7 @@ NSString * const kYelpToken = @"uRcRswHFYa1VkDrGV6LAW2F8clGh5JHV";
 NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 
 
+
 @interface ResultViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -36,6 +37,9 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 //@property (nonatomic,assign) BOOL searchWithFilters;
 @property (nonatomic,strong) NSMutableDictionary *categoriesYelpKeys;
 @property (nonatomic,strong) NSMutableDictionary *sortByYelpKeys;
+
+@property (nonatomic,strong)  YelpTableViewCell *stubCell;
+
 @end
 
 @implementation ResultViewController
@@ -114,22 +118,24 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     UINib *customCellNib= [UINib nibWithNibName:@"YelpTableViewCell" bundle:nil];
     [self.tableView registerNib:customCellNib forCellReuseIdentifier:@"YelpTableViewCell"];
     
+    self.stubCell= [self.tableView dequeueReusableCellWithIdentifier:@"YelpTableViewCell"];
+    
     [self loadData];
     
     
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-
-
-    if (self.businesses.count - 1 == indexPath.row){
-        NSLog(@"Searching with more radius for inifinite scrolling");
-        self.filtersView.optionsChosen[@"SortBy"]=@"";
-        self.filtersView.optionsChosen[@"Distance"]=@"4000 meters";
-        self.filtersView.optionsChosen[@"Categories"] = @"";
-        [self searchUsingFilters];
-    }
-}
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+//
+//
+//    if (self.businesses.count - 1 == indexPath.row){
+//        NSLog(@"Searching with more radius for inifinite scrolling");
+//        self.filtersView.optionsChosen[@"SortBy"]=@"";
+//        self.filtersView.optionsChosen[@"Distance"]=@"4000 meters";
+//        self.filtersView.optionsChosen[@"Categories"] = @"";
+//        [self searchUsingFilters];
+//    }
+//}
 
 
 
@@ -142,7 +148,10 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     //Not sure why this method was called before load data was complete .. hence the chek
     if (self.businesses.count > 0)
     {
-        [cell initializeCell:self.businesses[indexPath.row] withIndex:indexPath.row+1];
+        cell.business = self.businesses[indexPath.row];
+
+        //[cell initializeCell:self.businesses[indexPath.row] withIndex:indexPath.row+1];
+            NSLog(@"initi called");
     }
     return cell;
 }
@@ -152,6 +161,33 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     return self.businesses.count;
 }
 
+
+
+
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //[self configureCell:_stubCell atIndexPath:indexPath];
+    //[stubCell layoutSubviews];
+
+    //CGSize size = [stubCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+
+    NSLog(@"Height called");
+    self.stubCell.business = self.businesses[indexPath.row];
+    [self.stubCell layoutSubviews];
+    
+    CGSize size = [self.stubCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+ 
+    NSLog(@"--> height: %f", size.height);
+    return size.height+1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+
+}
+
+/*
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     YelpBusiness *biz = self.businesses[indexPath.row];
     int nameLabelWidth=175;
@@ -183,19 +219,24 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
                                      options:NSStringDrawingUsesLineFragmentOrigin
                                   attributes:attributes
                                      context:nil];
-  
+    CGSize maximumSize = CGSizeMake(200, 9999);
+    CGSize myStringSize = [add sizeWithFont:font
+                               constrainedToSize:maximumSize
+                                   lineBreakMode:NSLineBreakByWordWrapping];
+    NSLog(@"My size %f",myStringSize.height);
+    
     addheight += rect1.size.height;
     
     
     float cellheight = 48 + addheight + nameHeight;
-   // NSLog(@"\n\n----                    %f            %@ -height: %f\n",cellheight ,add,addheight);
+    NSLog(@"\n\n----                    %f            %@ -height: %f\n",cellheight ,add,addheight);
     
     
    // NSLog(@"\n\n %f",cellheight);
     return cellheight;
 
 }
-
+*/
 
 #pragma mark - Search meethods
 

@@ -19,5 +19,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
 @property (strong, nonatomic) YelpBusiness *business;
 
-- (void) initializeCell:(YelpBusiness *)business withIndex:(NSInteger)index;
+//- (void) initializeCell:(YelpBusiness *)business withIndex:(NSInteger)index;
 @end
